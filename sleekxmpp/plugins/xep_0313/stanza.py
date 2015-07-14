@@ -15,7 +15,7 @@ from sleekxmpp.plugins import xep_0082
 
 class MAM(ElementBase):
     name = 'query'
-    namespace = 'urn:xmpp:mam:tmp'
+    namespace = 'urn:xmpp:mam:0'
     plugin_attrib = 'mam'
     interfaces = set(['queryid', 'start', 'end', 'with', 'results'])
     sub_interfaces = set(['start', 'end', 'with'])
