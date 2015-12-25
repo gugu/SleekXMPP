@@ -150,6 +150,8 @@ def resolve(host, port=None, service=None, proto='tcp',
         for address in get_A(host, resolver=resolver,
                                    use_dnspython=use_dnspython):
             results.append((host, address, port))
+        for address in get_other_resolves(host):
+            results.append((host, address, port))
 
         for host, address, port in results:
             yield host, address, port
@@ -251,6 +253,10 @@ def get_AAAA(host, resolver=None, use_dnspython=True):
         log.debug("DNS: Error querying AAAA records for %s" % host)
         log.exception(e)
         return []
+
+
+def get_other_resolves(host):
+    return [socket.gethostbyname(host)]
 
 
 def get_SRV(host, port, service, proto='tcp', resolver=None, use_dnspython=True):
